@@ -25,16 +25,28 @@ except FileNotFoundError:
     st.stop()
 
 # NLTK downloads should be cached to avoid running every time
-@st.cache_data
+# Use the resource cache since we're dealing with a downloaded asset
+@st.cache_resource
 def load_nltk_data():
     try:
-        nltk.data.find('corpora/stopwords')
-    except nltk.downloader.DownloadError:
+        # Attempt to load the stopwords data directly. 
+        # If it fails, it will raise a LookupError.
+        STOP_WORDS = stopwords.words('english') 
+        
+    except LookupError:
+        # If the data isn't found, download it.
+        # This download must be done first before attempting to load again.
         nltk.download('stopwords')
-    return stopwords.words('english')
+        
+        # Now that it's downloaded, try loading it again
+        STOP_WORDS = stopwords.words('english')
+        
+    # Always return the required items
+    port_stem = PorterStemmer()
+    return STOP_WORDS, port_stem
 
-STOP_WORDS = load_nltk_data()
-port_stem = PorterStemmer()
+# Call the cached function once at the start
+STOP_WORDS, port_stem = load_nltk_data()
 
 
 # --- [CRITICAL STEP 2: PREPROCESSING FUNCTION] ---
