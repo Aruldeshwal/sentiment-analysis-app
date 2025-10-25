@@ -4,14 +4,7 @@
 venv/
 *.pyc
 
-# --- SAVED MACHINE LEARNING ARTIFACTS ---
-# Ignore large binary files generated during training/serialization
-# These should NOT be stored in Git, as they are large and non-textual.
-# They should be managed separately (e.g., using Git LFS or storage buckets).
-*.pkl
-*.sav
-*.joblib
-*.h5
+
 
 # --- STREAMLIT CACHE/LOCAL STORAGE ---
 # Ignore Streamlit's local cache files and folders
