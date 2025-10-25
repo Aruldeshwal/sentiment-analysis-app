@@ -22,3 +22,5 @@ This application is built entirely in Python and requires minimal setup to run:
 
 4. Launch the App: Run the Streamlit application from your terminal:
    <img width="825" height="123" alt="image" src="https://github.com/user-attachments/assets/85779c51-806b-4a58-861a-38ea6bd1479d" />
+
+Working link: https://sentitude.streamlit.app/
